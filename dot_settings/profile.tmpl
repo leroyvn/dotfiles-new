@@ -65,6 +65,6 @@ fi
 source ${config[settings_directory]}/apparish/apparish.sh
 
 # iTerm2 integration (macOS-specific)
-{{ if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" -}}
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-{{ end }}
+{{ end -}}
