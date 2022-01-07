@@ -1,0 +1,70 @@
+# ------------------------------------------------------------------------------
+#                               Config values
+# ------------------------------------------------------------------------------
+
+# Basic directories
+typeset -A config
+config[settings_directory]=${HOME}/.settings
+config[applications_directory]=${HOME}/Applications
+config[source_directory]=${HOME}/Documents/src
+config[miniconda]=${HOME}/miniforge3
+
+# ------------------------------------------------------------------------------
+#                             Path configuration
+# ------------------------------------------------------------------------------
+
+# Pipx
+export PATH="$PATH:${HOME}/.local/bin"
+
+# Pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# Miniconda
+if [ -n "${config[miniconda]+1}" ]; then
+    __conda_setup="$(${config[miniconda]}'/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "${config[miniconda]}/etc/profile.d/conda.sh" ]; then
+            . "${config[miniconda]}/etc/profile.d/conda.sh"
+        else
+            export PATH="${config[miniconda]}/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+
+    # Activate tab completion if using zsh
+    if [ -n "$ZSH_VERSION" ]; then
+        # assume Zsh
+        fpath+="${config[settings_directory]}/conda-zsh-completion"
+        compinit conda
+    fi
+fi
+
+# Path setting: custom apps
+if [ -n "${config[applications_directory]+1}" ]; then
+    export PATH=${config[applications_directory]}/bin:$PATH
+fi
+
+# Enable PEP 582
+eval "$(pdm --pep582)"
+
+# ------------------------------------------------------------------------------
+#                          Shell tools and plugins
+# ------------------------------------------------------------------------------
+
+# direnv local environment management system
+if hash direnv 2>/dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+
+# apparish bookmark system
+source ${config[settings_directory]}/apparish/apparish.sh
+
+# iTerm2 integration (macOS-specific)
+{{ if eq .chezmoi.os "darwin" }}
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+{{ end }}
