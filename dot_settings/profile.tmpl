@@ -13,6 +13,11 @@ config[miniconda]=${HOME}/miniforge3
 #                             Path configuration
 # ------------------------------------------------------------------------------
 
+# linuxbrew (Linux-specific)
+{{ if eq .chezmoi.os "linux" -}}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{ end -}}
+
 # Pipx
 export PATH="$PATH:${HOME}/.local/bin"
 
