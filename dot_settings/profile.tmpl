@@ -73,3 +73,6 @@ source ${config[settings_directory]}/apparish/apparish.sh
 {{ if eq .chezmoi.os "darwin" -}}
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 {{ end -}}
+
+# Prompt using Oh my posh
+eval "$(oh-my-posh --init --shell zsh --config ~/.settings/spaceship.omp.json)"
