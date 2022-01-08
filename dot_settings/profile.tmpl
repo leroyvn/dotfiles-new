@@ -1,3 +1,10 @@
+{{- $hostname := "" }}
+{{- if (eq .chezmoi.os "darwin") }}
+{{-   $hostname = (output "scutil" "--get" "ComputerName" | trim) }}
+{{- else if (eq .chezmoi.os "linux") }}
+{{-   $hostname = (output "hostname" | trim) }}
+{{- end -}}
+
 # ------------------------------------------------------------------------------
 #                               Config values
 # ------------------------------------------------------------------------------
@@ -7,14 +14,18 @@ typeset -A config
 config[settings_directory]=${HOME}/.settings
 config[applications_directory]=${HOME}/Applications
 config[source_directory]=${HOME}/Documents/src
+{{- if eq $hostname "arikel" }}
+config[miniconda]=${HOME}/mambaforge
+{{- else }}
 config[miniconda]=${HOME}/miniforge3
+{{- end }}
 
 # ------------------------------------------------------------------------------
 #                             Path configuration
 # ------------------------------------------------------------------------------
 
-# linuxbrew (Linux-specific)
 {{ if eq .chezmoi.os "linux" -}}
+# linuxbrew (Linux-specific)
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{ end -}}
 
@@ -68,11 +79,6 @@ fi
 
 # apparish bookmark system
 source ${config[settings_directory]}/apparish/apparish.sh
-
-# iTerm2 integration (macOS-specific)
-{{ if eq .chezmoi.os "darwin" -}}
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-{{ end -}}
 
 # Prompt using Oh my posh
 eval "$(oh-my-posh --init --shell zsh --config ~/.settings/spaceship.omp.json)"
