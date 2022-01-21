@@ -30,7 +30,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{ end -}}
 
 # Pipx
-export PATH="$PATH:${HOME}/.local/bin"
+export PATH="${HOME}/.local/bin:$PATH"
 
 # Pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
