@@ -15,5 +15,12 @@ Workflow requirements (tools I depend on for my usual workflow)
 
 - [pipx](https://github.com/pypa/pipx/)
 - [pyenv](https://github.com/pyenv/pyenv)
-- Conda, usually through [miniforge](https://github.com/conda-forge/miniforge) (installing mamba is highly recommended)
+- Conda, usually through [miniforge](https://github.com/conda-forge/miniforge) (installing [mamba](https://github.com/mamba-org/mamba) is highly recommended)
 - [PDM](https://github.com/pdm-project/pdm/)
+
+## Extra setup instructions
+
+- Prevent Conda from activating the `base` environment automatically:
+  ```
+  conda config --set auto_activate_base false
+  ```
