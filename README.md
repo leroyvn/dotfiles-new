@@ -24,3 +24,4 @@ Workflow requirements (tools I depend on for my usual workflow)
   ```
   conda config --set auto_activate_base false
   ```
+- Setting your own `resolv.conf` in WSL 2: https://github.com/microsoft/WSL/issues/5420
