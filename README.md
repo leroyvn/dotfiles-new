@@ -14,7 +14,7 @@ Framework requirements (the basic engine powering this system)
 Workflow requirements (tools I depend on for my usual workflow)
 
 - [pipx](https://github.com/pypa/pipx/)
-- [pyenv](https://github.com/pyenv/pyenv)
+- [pyenv](https://github.com/pyenv/pyenv) (prefer [auto installer](https://github.com/pyenv/pyenv-installer) on Linux)
 - Conda, usually through [miniforge](https://github.com/conda-forge/miniforge) (installing [mamba](https://github.com/mamba-org/mamba) is highly recommended)
 - [PDM](https://github.com/pdm-project/pdm/)
 
