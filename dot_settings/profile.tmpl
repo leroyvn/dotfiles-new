@@ -24,7 +24,7 @@ config[miniconda]=${HOME}/miniforge3
 #                             Path configuration
 # ------------------------------------------------------------------------------
 
-{{ if eq .chezmoi.os "linux" -}}
+{{ if and (eq .chezmoi.os "linux") (not (eq $hostname "aegir")) -}}
 # linuxbrew (Linux-specific)
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{ end -}}
