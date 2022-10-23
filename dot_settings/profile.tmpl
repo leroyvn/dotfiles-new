@@ -24,9 +24,12 @@ config[miniconda]=${HOME}/miniforge3
 #                             Path configuration
 # ------------------------------------------------------------------------------
 
-{{ if and (eq .chezmoi.os "linux") (not (eq $hostname "aegir")) -}}
 # linuxbrew (Linux-specific)
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{ if eq .chezmoi.os "linux" -}}
+# echo "Linuxbrew support is deprecated"
+if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 {{ end -}}
 
 # Pipx
