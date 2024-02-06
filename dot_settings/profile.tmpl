@@ -32,6 +32,11 @@ if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
 fi
 {{ end -}}
 
+# Rye
+if [[ -f "${HOME}/.rye/env" ]]; then
+    source "${HOME}/.rye/env"
+fi
+
 # Pipx
 export PATH="${HOME}/.local/bin:$PATH"
 
