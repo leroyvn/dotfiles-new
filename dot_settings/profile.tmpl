@@ -24,14 +24,6 @@ config[miniconda]=${HOME}/miniforge3
 #                             Path configuration
 # ------------------------------------------------------------------------------
 
-# linuxbrew (Linux-specific)
-{{ if eq .chezmoi.os "linux" -}}
-# echo "Linuxbrew support is deprecated"
-if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-{{ end -}}
-
 # Rye
 if [[ -f "${HOME}/.rye/env" ]]; then
     source "${HOME}/.rye/env"
@@ -39,12 +31,6 @@ fi
 
 # Pipx
 export PATH="${HOME}/.local/bin:$PATH"
-
-# Pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
 
 # Miniconda
 if [ -n "${config[miniconda]+1}" ]; then
@@ -72,9 +58,6 @@ fi
 if [ -n "${config[applications_directory]+1}" ]; then
     export PATH=${config[applications_directory]}/bin:$PATH
 fi
-
-# Enable PEP 582
-eval "$(pdm --pep582)"
 
 # ------------------------------------------------------------------------------
 #                          Shell tools and plugins
