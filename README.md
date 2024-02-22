@@ -14,15 +14,16 @@ Framework requirements (the basic engine powering this system)
 Workflow requirements (tools I depend on for my usual workflow)
 
 - [pipx](https://github.com/pypa/pipx/)
-- [pyenv](https://github.com/pyenv/pyenv) (prefer [auto installer](https://github.com/pyenv/pyenv-installer) on Linux)
 - Conda, usually through [miniforge](https://github.com/conda-forge/miniforge) (installing [mamba](https://github.com/mamba-org/mamba) is highly recommended)
-- [PDM](https://github.com/pdm-project/pdm/)
 
 ## Extra setup instructions
 
+- Install [Rye](https://rye-up.com/).
 - Prevent Conda from activating the `base` environment automatically:
-  ```
+
+  ```bash
   conda config --set auto_activate_base false
   ```
+
 - Setting your own `resolv.conf` in WSL 2: https://github.com/microsoft/WSL/issues/5420
 - When using WSL, [SidebarDiagnostics](https://github.com/ArcadeRenegade/SidebarDiagnostics) can be useful to monitor real resource usage
