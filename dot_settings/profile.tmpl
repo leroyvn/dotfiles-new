@@ -27,6 +27,13 @@ config[miniconda]=${HOME}/miniforge3
 # Rye
 if [[ -f "${HOME}/.rye/env" ]]; then
     source "${HOME}/.rye/env"
+
+    # Activate tab completion if using zsh
+    if [ -n "$ZSH_VERSION" ]; then
+        # assume Zsh
+        fpath+="${config[settings_directory]}/rye-zsh-completion"
+        compinit rye
+    fi
 fi
 
 # Pipx
