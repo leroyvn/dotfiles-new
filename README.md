@@ -14,6 +14,7 @@ Workflow requirements (tools I depend on for my usual workflow)
 
 - [pipx](https://github.com/pypa/pipx/)
 - Conda, usually through [miniforge](https://github.com/conda-forge/miniforge)
+- [direnv](https://github.com/direnv/direnv)
 
 New machine setup instructions
 
@@ -23,6 +24,7 @@ New machine setup instructions
 
 - Install one of the powerlevel10k recommended fonts (my favourite is Hack [Nerd Font](https://www.nerdfonts.com/font-downloads))
 - Upon checkout, if not already using it, the [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme wizard should pop up.
+- If the powerlevel10k instant prompt prints a warning upon cd'ing to a direnv-managed directory, [read this](https://github.com/romkatv/powerlevel10k/issues/702).
 - Install [Rye](https://rye-up.com/).
 - Prevent Conda from activating the `base` environment automatically:
 
