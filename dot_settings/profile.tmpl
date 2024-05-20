@@ -61,6 +61,13 @@ if [ -n "${config[miniconda]+1}" ]; then
     fi
 fi
 
+# NVM
+if [[ -d "${HOME}/.nvm/" ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
 # Path setting: custom apps
 if [ -n "${config[applications_directory]+1}" ]; then
     export PATH=${config[applications_directory]}/bin:$PATH
