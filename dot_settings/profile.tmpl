@@ -61,6 +61,12 @@ if [ -n "${config[miniconda]+1}" ]; then
     fi
 fi
 
+# Pixi
+if [[ -d "${HOME}/.pixi/" ]]; then
+    export PATH="${HOME}/.pixi/bin:$PATH"
+    eval "$(pixi completion --shell zsh)"
+fi
+
 # NVM
 if [[ -d "${HOME}/.nvm/" ]]; then
     export NVM_DIR="$HOME/.nvm"
