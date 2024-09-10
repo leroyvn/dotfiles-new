@@ -36,16 +36,14 @@ if [[ -f "${HOME}/.rye/env" ]]; then
     fi
 fi
 
-# Pipx
+# Pipx and uv
 export PATH="${HOME}/.local/bin:$PATH"
-
-# Pixi
-export PATH="${HOME}/.pixi/bin:$PATH"
-
-# uv
 if [[ -f "${HOME}/.cargo/env" ]]; then
     source $HOME/.cargo/env
 fi
+
+# Pixi
+export PATH="${HOME}/.pixi/bin:$PATH"
 
 # Miniconda
 if [ -n "${config[miniconda]+1}" ]; then
